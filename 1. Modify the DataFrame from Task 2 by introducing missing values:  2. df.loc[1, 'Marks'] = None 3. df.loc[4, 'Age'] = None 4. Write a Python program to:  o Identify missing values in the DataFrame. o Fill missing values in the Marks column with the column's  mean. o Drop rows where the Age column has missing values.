@@ -1,0 +1,24 @@
+import pandas as pd
+data = {
+    'Name':   ['Alice', 'Bob',   'Carol', 'David', 'Eve'],
+    'Age':    [20,      22,      19,      21,      20],
+    'Gender': ['Female','Male',  'Female','Male',  'Female'],
+    'Marks':  [85,      78,      92,      74,      88]
+}
+df = pd.DataFrame(data)
+df.loc[1, 'Marks'] = None  # Bob's Marks → NaN
+df.loc[4, 'Age']   = None  # Eve's Age   → NaN
+print("DataFrame with missing values:")
+print(df)
+print()
+print("Missing values by column:")
+print(df.isnull().sum())
+print()
+mean_marks = df['Marks'].mean(skipna=True)
+df['Marks'].fillna(mean_marks, inplace=True)
+print(f"Filled missing Marks with mean ({mean_marks:.2f}):")
+print(df)
+print()
+df_clean = df.dropna(subset=['Age'])
+print("DataFrame after dropping rows with missing Age:")
+print(df_clean)
