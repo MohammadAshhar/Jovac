@@ -1,0 +1,25 @@
+import numpy as np
+
+def main():
+    arr = np.arange(1, 13)
+    print("Original 1D array:")
+    print(arr)
+    print("  shape:", arr.shape, "\n")
+
+    arr2d = arr.reshape(4, 3)
+    print("Reshaped to 2D (4×3):")
+    print(arr2d)
+    print("  shape:", arr2d.shape, "\n")
+
+    arr3d = arr.reshape(2, 2, 3)
+    print("Reshaped to 3D (2×2×3):")
+    print(arr3d)
+    print("  shape:", arr3d.shape, "\n")
+
+    arr2d_T = arr2d.T
+    print("Transpose of the 2D array:")
+    print(arr2d_T)
+    print("  shape:", arr2d_T.shape)
+
+if __name__ == "__main__":
+    main()
