@@ -1,0 +1,31 @@
+import numpy as np
+import time
+
+def main():
+    A = np.random.random((100, 100))
+    B = np.random.random((100, 100))
+
+    start_mul = time.perf_counter()
+    C = A @ B
+    end_mul = time.perf_counter()
+    print(f"Matrix multiplication time: {end_mul - start_mul:.6f} seconds")
+
+    start_det = time.perf_counter()
+    det_C = np.linalg.det(C)
+    end_det = time.perf_counter()
+    print(f"Determinant computation time: {end_det - start_det:.6f} seconds")
+    print(f"Determinant of C: {det_C:e}")
+
+    try:
+        start_inv = time.perf_counter()
+        inv_C = np.linalg.inv(C)
+        end_inv = time.perf_counter()
+        print(f"Inverse computation time: {end_inv - start_inv:.6f} seconds")
+        identity_approx = C @ inv_C
+        error = np.max(np.abs(identity_approx - np.eye(100)))
+        print(f"Max error in C @ inv(C) - I₁₀₀: {error:.2e}")
+    except np.linalg.LinAlgError:
+        print("Matrix C is singular and cannot be inverted.")
+
+if __name__ == "__main__":
+    main()
