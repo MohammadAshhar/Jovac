@@ -1,0 +1,21 @@
+import pandas as pd
+data = {
+    'Name':   ['Alice', 'Bob',   'Carol', 'David', 'Eve'],
+    'Age':    [20,      22,      19,      21,      20],
+    'Gender': ['Female','Male',  'Female','Male',  'Female'],
+    'Marks':  [85,      78,      92,      74,      88]
+}
+df = pd.DataFrame(data)
+df.loc[1, 'Marks'] = None  # Bob's Marks → NaN
+df.loc[4, 'Age']   = None  # Eve's Age   → NaN
+mean_marks = df['Marks'].mean(skipna=True)
+df['Marks'].fillna(mean_marks, inplace=True)
+df_clean = df.dropna(subset=['Age'])
+
+csv_filename = 'students_data.csv'
+df_clean.to_csv(csv_filename, index=False)
+print(f"Saved cleaned data to '{csv_filename}'")
+
+new_df = pd.read_csv(csv_filename)
+print("\nFirst five rows of the newly loaded DataFrame:")
+print(new_df.head())
