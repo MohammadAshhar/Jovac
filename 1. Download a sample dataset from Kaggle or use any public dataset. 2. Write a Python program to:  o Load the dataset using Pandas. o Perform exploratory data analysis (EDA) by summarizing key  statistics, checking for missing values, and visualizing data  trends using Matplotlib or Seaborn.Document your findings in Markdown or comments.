@@ -1,0 +1,113 @@
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+from sklearn.datasets import load_iris
+iris = load_iris()
+df = pd.DataFrame(iris.data, columns=iris.feature_names)
+df['species'] = pd.Categorical.from_codes(iris.target, iris.target_names)
+
+print("First five rows of the dataset:")
+print(df.head(), "\n")
+
+print("DataFrame Information:")
+df.info()
+print("\nSummary Statistics:")
+print(df.describe(include='all'), "\n")
+
+print("Missing Values per Column:")
+print(df.isnull().sum(), "\n")
+
+#  Histogram of Sepal Length
+plt.figure()
+sns.histplot(df['sepal length (cm)'], kde=True)
+plt.title('Sepal Length Distribution')
+plt.xlabel('Sepal Length (cm)')
+plt.ylabel('Count')
+plt.show()
+
+#  Count plot of Species
+plt.figure()
+sns.countplot(x='species', data=df)
+plt.title('Count of Iris Species')
+plt.xlabel('Species')
+plt.ylabel('Count')
+plt.show()
+
+#  Boxplot of Petal Length by Species
+plt.figure()
+sns.boxplot(x='species', y='petal length (cm)', data=df)
+plt.title('Petal Length by Species')
+plt.xlabel('Species')
+plt.ylabel('Petal Length (cm)')
+plt.show()
+
+#  Correlation Heatmap
+plt.figure(figsize=(6, 5))
+sns.heatmap(df.select_dtypes(include='number').corr(), annot=True)
+plt.title('Correlation Heatmap')
+plt.show()
+
+
+# Exploratory Data Analysis Report on the Iris Dataset
+
+## 1. Introduction
+
+This report provides a concise Exploratory Data Analysis (EDA) of the classic **Iris** dataset. The key objectives are:
+
+* Load and inspect the dataset
+* Summarize basic statistics and data types
+* Check for missing values
+* Visualize distributions and relationships between features
+
+## 2. Data Loading and Inspection
+
+**Summary:**
+
+* The DataFrame contains **150** rows and **5** columns (4 numeric features + 1 categorical target).
+* Species categories: **setosa**, **versicolor**, **virginica**.
+
+## 3. Data Summary and Missing Values
+
+**Key Statistics & Data Quality:**
+
+* There are **no missing values** in any column.
+* Numeric feature ranges:
+
+  * Sepal length: 4.3 – 7.9 cm
+  * Sepal width: 2.0 – 4.4 cm
+  * Petal length: 1.0 – 6.9 cm
+  * Petal width: 0.1 – 2.5 cm
+* Each species appears exactly 50 times, confirming a balanced dataset.
+
+## 4. Visual Findings
+
+### 4.1 Sepal Length Distribution
+
+* The distribution of sepal lengths is approximately normal, centered around 5.8 cm.
+
+### 4.2 Species Distribution
+
+* Each species has exactly 50 samples, indicating a perfectly balanced dataset.
+
+### 4.3 Petal Length by Species
+
+* **Setosa** exhibits distinctly shorter petals (≤ 1.9 cm).
+* **Versicolor** and **Virginica** overlap somewhat in petal length, but Virginica generally has longer petals.
+
+### 4.4 Feature Correlation
+
+* **Petal length** and **petal width** have a very strong positive correlation (\~0.96).
+* Sepal measurements are moderately correlated with each other but less so with petal dimensions.
+
+## 5. Conclusions
+
+* The Iris dataset is clean (no missing data) and balanced across all species.
+* Petal measurements are the most discriminative features for distinguishing species.
+* Subsequent modeling efforts should focus on petal length and width to achieve high classification accuracy.
+
+*End of Report*
+
+
+
+
+
