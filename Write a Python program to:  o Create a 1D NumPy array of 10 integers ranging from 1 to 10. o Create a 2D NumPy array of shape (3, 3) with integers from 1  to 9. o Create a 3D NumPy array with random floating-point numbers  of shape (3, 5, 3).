@@ -1,14 +1,26 @@
 import numpy as np
+
 def main():
     arr1d = np.arange(1, 11)
-    print("1D array (1 to 10):")
-    print(arr1d, end="\n\n")
-    arr2d = np.arange(1, 10).reshape((3, 3))
-    print("2D array (3×3, 1 to 9):")
-    print(arr2d, end="\n\n")
+    print("1D array:")
+    print(arr1d)
+    print("  shape:", arr1d.shape)
+    print("  size: ", arr1d.size)
+    print("  dtype:", arr1d.dtype, end="\n\n")
+
+    arr2d = np.arange(1, 10).reshape(3, 3)
+    print("2D array:")
+    print(arr2d)
+    print("  shape:", arr2d.shape)
+    print("  size: ", arr2d.size)
+    print("  dtype:", arr2d.dtype, end="\n\n")
+
     arr3d = np.random.random(size=(3, 5, 3))
-    print("3D array (3×5×3, random floats):")
+    print("3D array:")
     print(arr3d)
+    print("  shape:", arr3d.shape)
+    print("  size: ", arr3d.size)
+    print("  dtype:", arr3d.dtype)
 
 if __name__ == "__main__":
     main()
