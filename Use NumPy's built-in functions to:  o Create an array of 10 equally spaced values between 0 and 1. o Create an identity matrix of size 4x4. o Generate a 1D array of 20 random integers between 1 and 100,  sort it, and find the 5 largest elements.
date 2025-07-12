@@ -1,0 +1,25 @@
+import numpy as np
+
+def main():
+    arr_linspace = np.linspace(0, 1, num=10)
+    print("Equally spaced values (0 to 1):")
+    print(arr_linspace, "\n")
+
+    identity_mat = np.eye(4)
+    print("4×4 Identity matrix:")
+    print(identity_mat, "\n")
+
+    rand_ints = np.random.randint(1, 101, size=20)
+    print("Original random integers:")
+    print(rand_ints)
+
+    sorted_ints = np.sort(rand_ints)
+    print("\nSorted array:")
+    print(sorted_ints)
+
+    largest_five = sorted_ints[-5:]
+    print("\n5 largest elements:")
+    print(largest_five)
+
+if __name__ == "__main__":
+    main()
