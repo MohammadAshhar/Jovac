@@ -1,0 +1,4 @@
+import pandas as pd
+data = [25, 30, 35, 40, 45]
+series = pd.Series(data)
+print(series)
