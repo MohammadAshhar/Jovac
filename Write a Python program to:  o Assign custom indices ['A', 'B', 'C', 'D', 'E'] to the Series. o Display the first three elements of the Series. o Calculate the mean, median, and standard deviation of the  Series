@@ -1,0 +1,16 @@
+import pandas as pd
+data = [25, 30, 35, 40, 45]
+indices = ['A', 'B', 'C', 'D', 'E']
+series = pd.Series(data, index=indices)
+print("Series with custom indices:")
+print(series)
+print()
+print("First three elements:")
+print(series.head(3))
+print()
+mean_val = series.mean()
+median_val = series.median()
+std_dev = series.std()
+print(f"Mean: {mean_val}")
+print(f"Median: {median_val}")
+print(f"Standard Deviation: {std_dev}")
