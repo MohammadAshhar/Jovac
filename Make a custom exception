@@ -1,0 +1,33 @@
+#1 Custom exception using subclassing Exception
+class ValidationError(Exception):
+    def __init__(self, message, field=None):
+        super().__init__(message)
+        self.field = field
+def process_user_age(age):
+    if not isinstance(age, int):
+        raise ValidationError("Age must be an integer", field="age")
+    if age < 0 or age > 150:
+        raise ValidationError(f"Age {age} is out of realistic bounds", field="age")
+    print(f"User age {age} is valid.")
+if __name__ == "__main__":
+    test_values = ["twenty", -5, 30]
+    for val in test_values:
+        try:
+            process_user_age(val)
+        except ValidationError as e:
+            print(f"Caught ValidationError on field '{e.field}': {e}")
+
+#2 Simple Custom exception
+class MyCustomError(Exception):
+    pass
+
+def divide(a, b):
+    if b == 0:
+        raise MyCustomError("Cannot divide by zero!")
+    return a / b
+try:
+    result = divide(10, 0)
+    print("Result:", result)
+except MyCustomError as e:
+    print("Caught an error:", e)
+
